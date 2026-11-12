@@ -36,7 +36,20 @@ class ChaosGame:
         """
         points = np.zeros((n, 2))
         # 4. the start: p, k, and current (replace pass)
-        pass
+        vertices = np.asarray(vertices, dtype=float)
+        k =len(vertices)
+        current = 0
+     
+        p = vertices.mean(axis=0)
+        points = np.empty((n,2))
+
+        for i in range(n):
+            allowed = self.rule.choices(k, current)
+            current =self.rng.choice(allowed)
+            
+            v = vertices[current]
+            p = p + self.f *(v-p)
+            points[i]=p
         # 5. the n moves, a. to d. (replace pass)
-        pass
+    
         return points
